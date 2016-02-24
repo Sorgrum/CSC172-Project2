@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 /**
  * Student Name: Marcelo Gheiler
  * Filename: InfixPostfixConverter
@@ -11,6 +13,15 @@
 public class InfixPostfixConverter {
 	public static String convertToPostfix(String infixExpr) {
 
+		ArrayList<String> tokens = tokenize(infixExpr);
+
+		for (int i = 0; i < tokens.size(); i++) {
+
+		}
 		return "";
+	}
+
+	public static ArrayList<String> tokenize(String infixExpr) {
+
 	}
 }
