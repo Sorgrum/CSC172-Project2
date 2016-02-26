@@ -14,14 +14,17 @@ public class Main {
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			FileWriter fileWriter = new FileWriter(outFileName);
 			BufferedWriter bufferedWriter = new BufferedWriter(fileWriter);
-
-			while (bufferedReader.readLine() != null) {
-
 				String currentExpr = bufferedReader.readLine();
+
+			while (currentExpr != null) {
+
+
 				currentExpr = InfixPostfixConverter.convertToPostfix(currentExpr);
 				String result = PostfixEvaluator.evaluatePostfixExpression(currentExpr);
 
 				bufferedWriter.write(result);
+				currentExpr = bufferedReader.readLine();
+				System.out.println("---------------------------");
 
 			}
 		} catch (FileNotFoundException e) {
