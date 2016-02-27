@@ -24,7 +24,6 @@ public class Main {
 
 				bufferedWriter.write(result);
 				currentExpr = bufferedReader.readLine();
-				System.out.println("---------------------------");
 
 			}
 		} catch (FileNotFoundException e) {

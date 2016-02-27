@@ -16,6 +16,8 @@ public class InfixPostfixConverter {
 	public static String convertToPostfix(String infixExpr) {
 
 		ArrayList<String> tokens = tokenize(infixExpr);
+		Stack<String> operatorStack = new Stack<>();
+		Queue<String> postfixString = new Queue<>();
 
 		for (int i = 0; i < tokens.size(); i++) {
 
@@ -28,7 +30,17 @@ public class InfixPostfixConverter {
 		ArrayList<String> tokenizedString = new ArrayList<>();
 
 		for (int i = 0; i < infixExpr.length(); i++) {
+			String tokenToAdd = "";
+
 			switch (infixExpr.charAt(i)) {
+				case ')':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
+				case '(':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
 				case '0':
 				case '1':
 				case '2':
@@ -41,17 +53,20 @@ public class InfixPostfixConverter {
 				case '9':
 				case '.':
 					// While the next characters are numbers or a period combine them into one string
-					String tokenToAdd = "";
+					tokenToAdd = "";
 
 					// If it's the last one there shouldnt be any other number following it's a single digit
 
-					int j = i;
-					while (j < infixExpr.length() && (Character.isDigit(infixExpr.charAt(j)) || infixExpr.charAt(j) == '.')) {
-						tokenToAdd += infixExpr.charAt(j);
-						j++;
+					tokenToAdd += infixExpr.charAt(i);
+
+					while (i + 1 < infixExpr.length() && (Character.isDigit(infixExpr.charAt(i + 1)) || infixExpr
+							.charAt(i + 1)
+							== '.')) {
+						tokenToAdd += infixExpr.charAt(i + 1);
+
+						i++;
 					}
-					// We already took all the intermediate characters into account
-					i = j;
+
 
 
 					tokenizedString.add(tokenToAdd);
@@ -63,28 +78,74 @@ public class InfixPostfixConverter {
 					break;
 				case '-':
 					tokenToAdd = "";
-					if (i == 0) {
-						tokenToAdd = Character.toString(infixExpr.charAt(i));
-					} else {
 
-						// If the previous token is a digit
-						try {
-							Double.parseDouble(tokenizedString.get(tokenizedString.size() - 1));
-							tokenToAdd = Character.toString(infixExpr.charAt(i));
-						} catch (NumberFormatException e) {
-							int k = i;
-							tokenToAdd = tokenToAdd + Character.toString(infixExpr.charAt(i));
-							while (k < infixExpr.length() && (Character.isDigit(infixExpr.charAt(k)) || infixExpr.charAt(k) == '.')) {
-								tokenToAdd += Character.toString(infixExpr.charAt(k));
-								k++;
-							}
-							// We already took all the intermediate characters into account
-							i = k;
+
+					// If the previous token is a digit
+					try {
+						Double.parseDouble(tokenizedString.get(tokenizedString.size() - 1));
+						tokenToAdd = Character.toString(infixExpr.charAt(i));
+					} catch (NumberFormatException e) {
+						tokenToAdd = tokenToAdd + Character.toString(infixExpr.charAt(i));
+						int k = i + 1;
+						while (k < infixExpr.length() && (Character.isDigit(infixExpr.charAt(k)) || infixExpr.charAt(k) == '.')) {
+							tokenToAdd += Character.toString(infixExpr.charAt(k));
+							k++;
 						}
+						// We already took all the intermediate characters into account
+						i = k;
+					} catch (ArrayIndexOutOfBoundsException e ) {
+						tokenToAdd = tokenToAdd + Character.toString(infixExpr.charAt(i));
+						int k = i + 1;
+						while (k < infixExpr.length() && (Character.isDigit(infixExpr.charAt(k)) || infixExpr.charAt(k) == '.')) {
+							tokenToAdd += Character.toString(infixExpr.charAt(k));
+							k++;
+						}
+						// We already took all the intermediate characters into account
+						i = k;
 					}
+
 					tokenizedString.add(tokenToAdd);
 					System.out.println("Added " + tokenToAdd);
 					break;
+				case '*':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
+				case '/':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
+				case '=':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
+				case '&':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
+				case '|':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
+				case '>':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
+				case '<':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
+				case '!':
+					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
+					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					break;
+
+				case ' ':
+					break;
+				default:
+					System.out.println(Character.toString(infixExpr.charAt(i)) + " not added");
+
+
 			}
 		}
 		return tokenizedString;
