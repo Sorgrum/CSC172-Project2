@@ -20,8 +20,9 @@ public class InfixPostfixConverter {
 		Queue<String> postfixString = new Queue<>();
 
 		for (int i = 0; i < tokens.size(); i++) {
-
+			System.out.print(tokens.get(i));
 		}
+		System.out.println("");
 		return "";
 	}
 
@@ -35,11 +36,11 @@ public class InfixPostfixConverter {
 			switch (infixExpr.charAt(i)) {
 				case ')':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '(':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '0':
 				case '1':
@@ -70,11 +71,11 @@ public class InfixPostfixConverter {
 
 
 					tokenizedString.add(tokenToAdd);
-					System.out.println("Added " + tokenToAdd);
+					// System.out.println("Added " + tokenToAdd);
 					break;
 				case '+':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '-':
 					tokenToAdd = "";
@@ -85,6 +86,7 @@ public class InfixPostfixConverter {
 						Double.parseDouble(tokenizedString.get(tokenizedString.size() - 1));
 						tokenToAdd = Character.toString(infixExpr.charAt(i));
 					} catch (NumberFormatException e) {
+
 						tokenToAdd = tokenToAdd + Character.toString(infixExpr.charAt(i));
 						int k = i + 1;
 						while (k < infixExpr.length() && (Character.isDigit(infixExpr.charAt(k)) || infixExpr.charAt(k) == '.')) {
@@ -105,45 +107,45 @@ public class InfixPostfixConverter {
 					}
 
 					tokenizedString.add(tokenToAdd);
-					System.out.println("Added " + tokenToAdd);
+					// System.out.println("Added " + tokenToAdd);
 					break;
 				case '*':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '/':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '=':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '&':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '|':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '>':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '<':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 				case '!':
 					tokenizedString.add(Character.toString(infixExpr.charAt(i)));
-					System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
+					// System.out.println("Added " + Character.toString(infixExpr.charAt(i)));
 					break;
 
 				case ' ':
 					break;
 				default:
-					System.out.println(Character.toString(infixExpr.charAt(i)) + " not added");
+					// System.out.println(Character.toString(infixExpr.charAt(i)) + " not added");
 
 
 			}
